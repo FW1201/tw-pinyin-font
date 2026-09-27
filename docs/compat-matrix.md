@@ -38,7 +38,7 @@ Google Fonts 會把 CJK 字型切成 100 多個 `unicode-range` 分片。在 Chr
 
 ## Office 實測檢核表
 
-請在每個環境安裝 `fonts/TaiwanPinyinKai-Regular.ttf`，把 [`tests/fixtures/office-test.txt`](../tests/fixtures/office-test.txt) 整份複製貼上（含 IVS），字型設為 **Taiwan Pinyin Kai**：
+請在每個環境安裝 `fonts/ttf/TaiwanPinyinKai-Regular.ttf`，把 [`tests/fixtures/office-test.txt`](../tests/fixtures/office-test.txt) 整份複製貼上（含 IVS），字型設為 **Taiwan Pinyin Kai**：
 
 | # | 測試文字 | 預期 | 說明 |
 |---|------|------|------|

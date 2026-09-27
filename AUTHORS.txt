@@ -1,0 +1,3 @@
+# Authors of Taiwan Pinyin Kai (copyright holders)
+Wu Chi (FW1201) <https://github.com/FW1201>
+The LXGW WenKai Project Authors <https://github.com/lxgw/LxgwWenkaiTC>

@@ -220,13 +220,14 @@ def build(limit: int | None, woff2: bool, google_fonts: bool = False) -> Path:
     font["head"].fontRevision = float(VERSION)
 
     OUT_DIR.mkdir(exist_ok=True)
-    out = OUT_DIR / ("googlefonts" if google_fonts else "") / f"{PS_NAME}.ttf"
+    out = OUT_DIR / ("googlefonts" if google_fonts else "ttf") / f"{PS_NAME}.ttf"
     out.parent.mkdir(parents=True, exist_ok=True)
     font.save(out)
     print(f"saved {out} ({out.stat().st_size / 1e6:.1f} MB)")
     if woff2:
         font.flavor = "woff2"
-        wout = out.with_suffix(".woff2")
+        wout = OUT_DIR / "webfonts" / f"{PS_NAME}.woff2"
+        wout.parent.mkdir(parents=True, exist_ok=True)
         font.save(wout)
         print(f"saved {wout} ({wout.stat().st_size / 1e6:.1f} MB)")
     return out

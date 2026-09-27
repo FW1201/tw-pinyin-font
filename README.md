@@ -27,7 +27,7 @@
 
 ## 安裝與使用
 
-- **Windows**：在 `fonts/TaiwanPinyinKai-Regular.ttf` 上按右鍵 →「為所有使用者安裝」
+- **Windows**：在 `fonts/ttf/TaiwanPinyinKai-Regular.ttf` 上按右鍵 →「為所有使用者安裝」
 - **macOS**：雙擊 `.ttf` →「安裝字體」。Mac 版 Office 的字型選單只顯示英文名 **Taiwan Pinyin Kai**；Office 有自己的字型快取，安裝後若沒出現，請把 Office 完全結束再開（實測有時要重開兩次）
 - **Word／PowerPoint**：選字型「Taiwan Pinyin Kai」（中文名「臺灣拼音楷」）。PowerPoint 的**行距請設 1.5 倍**，因為單行間距時拼音會碰到上一行；Word 的單行間距就足夠。要傳給沒有安裝字型的人，請對方安裝字型，或改寄 PDF：實測 Word for Mac 的「內嵌字型」只存子集，移除字型後會用替代字型顯示
 - **Google 文件／簡報**：只能使用 Google Fonts 的字型，本字型送審中，詳見 [docs/google-fonts-submission.md](docs/google-fonts-submission.md)
@@ -44,7 +44,7 @@ make            # 編譯讀音規則 → 建置字型（TTF＋WOFF2）→ 測試
 | 指令 | 說明 |
 |------|------|
 | `make rules` | `build/compile_rules.py`：審訂表＋全字庫＋自建資料 → `sources/rules/compiled/` |
-| `make font` | `build/build_font.py`：產生 `fonts/TaiwanPinyinKai-Regular.{ttf,woff2}`（約 1 分鐘） |
+| `make font` | `build/build_font.py`：產生 `fonts/ttf/、fonts/webfonts/`（約 1 分鐘） |
 | `make test` | `pytest tests/`：真實句子讀音、字型與模擬器一致性、IVS、表格檢查 |
 | `make fontbakery` | Google Fonts 規範檢查 |
 

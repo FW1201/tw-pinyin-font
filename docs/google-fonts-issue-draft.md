@@ -10,9 +10,7 @@ Google Fonts 送審 issue 草稿（尚未送出）
 
 1. **AI 使用揭露**：Google Fonts 要求揭露 AI 工具的使用。本專案的建置程式、自建詞表初稿、文件都由 Claude（Anthropic）協助產生，並經作者審閱；下方草稿已照實寫明，請確認措辭。
 2. **原始檔**：本字型沒有 .glyphs／.ufo 設計原始檔。漢字輪廓直接取自霞鶩文楷 TC 的 TTF，拼音由程式用文楷本身的拉丁字母組合而成。所以範本中「The source files are available in the repo」這一項先不勾，並在內文說明；Google Fonts 可能要求改成 UFO 流程或與上游合作。
-3. **Repo 結構**（建議送出前調整）：
-   - 字型移到 `fonts/ttf/`
-   - 新增 `DESCRIPTION.en_us.html`（字型介紹）與 `AUTHORS.txt`／`CONTRIBUTORS.txt`
+3. ~~Repo 結構~~：已完成（`fonts/ttf/`、`fonts/webfonts/`、`DESCRIPTION.en_us.html`、`AUTHORS.txt`、`CONTRIBUTORS.txt`）
 4. **你本人的承諾**：範本最後一項是「會維護 repo 並參與 onboarding」，要由你決定能不能勾。
 
 ---
@@ -47,7 +45,7 @@ By opening this issue, I confirm the project meets the following requirements:
 - [x] The family name is unique according to [namecheck.fontdata.com](https://namecheck.fontdata.com/) (checked 2026-09-27: no match for "Taiwan Pinyin Kai")
 - [x] The name of the font family expected to appear on app menus must be very clearly communicated and definitive: **Taiwan Pinyin Kai**
 - [x] The font supports at least the Google Fonts 'Latin Core' glyphset (inherited from LXGW WenKai TC)
-- [ ] The repo has the [Google Fonts preferred upstream repo structure](https://googlefonts.github.io/gf-guide/upstream.html) — *close; happy to move binaries to `fonts/ttf/` and add `DESCRIPTION.en_us.html` as requested*
+- [x] The repo has the [Google Fonts preferred upstream repo structure](https://googlefonts.github.io/gf-guide/upstream.html)
 - [x] I have read, agree with, and comply with, the full [Google Fonts contributing requirements](https://googlefonts.github.io/gf-guide/index#pre-production-getting-your-fonts-ready-for-gf)
 - [ ] I will maintain the repository and participate in the onboarding process
 

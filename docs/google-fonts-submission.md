@@ -43,6 +43,6 @@ typo 維持 Google Fonts 要求的 880／-120 並關閉 USE_TYPO_METRICS，瀏�
 
 ## 送審步驟
 
-1. 公開 `FW1201/tw-pinyin-font`，建立 release（`fonts/googlefonts/TaiwanPinyinKai-Regular.ttf`）
+1. 公開 `FW1201/tw-pinyin-font`，建立 release（`fonts/googlefonts/ttf/TaiwanPinyinKai-Regular.ttf`）
 2. 在 [google/fonts](https://github.com/google/fonts/issues) 開 issue「Add Taiwan Pinyin Kai」，附上：用途、讀音來源與授權、fontbakery 報告、上述兩個關鍵議題
 3. 依審查意見修改；Google Fonts 會把 `METADATA.pb`（含 `subsets: "chinese-traditional"`）與字型放進 `ofl/taiwanpinyinkai/`
