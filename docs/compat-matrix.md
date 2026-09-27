@@ -9,7 +9,7 @@
 | Chrome（macOS） | ✅ | ✅ | ✅ | ➖ | [字樣頁](specimen.html) 目視檢查 |
 | Chrome＋unicode-range 分片（模擬 Google Fonts） | ✅ | ❌ 跨片失效 | ⚠️ 須與基字同片 | ➖ | [分片實驗](experiments/slicing/index.html) |
 | Word（Windows） | ⏳ | ⏳ | ⏳ | ⏳ | 見下方檢核表 |
-| Word（macOS） | ⏳ | ⏳ | ⏳ | ⏳ | 待重新啟動 Word 後實測 |
+| Word（macOS 16.113） | ✅ | ❌（開啟「內容替代字」也無效） | ✅ | ❌ 內嵌子集字型不被使用 | 2026-09-27 實測；單行間距即足夠，不需 1.5 倍 |
 | Word 網頁版 | ⏳ | ⏳ | ⏳ | ➖ | |
 | PowerPoint（macOS 16.113） | ✅ | ❌ | ✅ | ⏳ | 2026-09-27 實測；單行間距拼音會壓到上一行，需 1.5 倍行高 |
 | PowerPoint（Windows） | ⏳ | ⏳ | ⏳ | ⏳ | |
@@ -22,6 +22,8 @@
 ## Mac 版 Office 實測結論（2026-09-27）
 
 - Mac 版 PowerPoint／Excel 對中文文字**完全不執行 GSUB 情境替換**。實驗版把詞語規則同時掛在 ccmp、liga、clig、rlig 上也無效；但預設讀音（cmap）與 **IVS（cmap 14）完全正確**。
+- Word for Mac 同樣不執行詞語規則，即使在 docx 中開啟 `w14:cntxtAlts`（使用內容替代字）也一樣；「固定讀音」後全部正確（[截圖](images/word-pinned.png)）。Word 的單行間距會依字型度量保留拼音空間，不需要調行距。
+- **內嵌字型**：Word for Mac 儲存時只內嵌子集（實測 488 KB，cmap 與內文不對應），移除字型後重開仍然使用替代字型。所以傳給沒有安裝字型的人時，請對方安裝字型，或改寄 PDF。Windows 版 Word 的內嵌尚未實測。
 - Mac 版 Office 有自己的字型快取：安裝或更新字型後，第一次重開仍可能用替代字型，要再完全結束、重開一次才會生效。
 - 所以 Office 的建議流程是：用校正器或增益集「固定讀音」寫入 IVS，再把行距設為 1.5 倍。已用「固定讀音」後的簡報驗證：長大、銀行、目的、睡著、弟弟、音樂、快樂、得到、覺得、高興地全部正確。
 

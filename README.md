@@ -23,13 +23,13 @@
 1. **自動（rclt／calt）**：字型內建約 1,500 條詞語規則，從左到右以「最長詞優先」判斷讀音。
 2. **手動（IVS）**：在字後加上 Unicode 異體字選擇子 `U+E01E0 + n`，就會顯示第 n 個讀音（n 從 0 起算，順序見 [`sources/rules/compiled/chars.tsv`](sources/rules/compiled/chars.tsv)）。IVS 會蓋過自動判斷，而且複製貼上不會遺失。規格見 [docs/ivs-spec.md](docs/ivs-spec.md)。
 
-**Microsoft Office（實測 Mac 版 PowerPoint／Excel 16.113）不執行詞語規則**，只會顯示預設讀音；但 IVS 完全支援。所以在 Office 中請先到 **[拼音讀音校正器](https://tw-pinyin-editor.vercel.app)** 按「複製（固定讀音）」再貼上，或使用 Office 增益集的「固定讀音」：它只在需要的字後插入 IVS，讀音就會正確。瀏覽器、macOS（Pages、Keynote、TextEdit）、Android 會自動判斷詞語，不需要這一步。
+**Microsoft Office（實測 Mac 版 Word／PowerPoint／Excel 16.113）不執行詞語規則**，只會顯示預設讀音；但 IVS 完全支援。所以在 Office 中請先到 **[拼音讀音校正器](https://tw-pinyin-editor.vercel.app)** 按「複製（固定讀音）」再貼上，或使用 Office 增益集的「固定讀音」：它只在需要的字後插入 IVS，讀音就會正確。瀏覽器、macOS（Pages、Keynote、TextEdit）、Android 會自動判斷詞語，不需要這一步。
 
 ## 安裝與使用
 
 - **Windows**：在 `fonts/TaiwanPinyinKai-Regular.ttf` 上按右鍵 →「為所有使用者安裝」
 - **macOS**：雙擊 `.ttf` →「安裝字體」。Mac 版 Office 的字型選單只顯示英文名 **Taiwan Pinyin Kai**；Office 有自己的字型快取，安裝後若沒出現，請把 Office 完全結束再開（實測有時要重開兩次）
-- **Word／PowerPoint**：選字型「Taiwan Pinyin Kai」（中文名「臺灣拼音楷」），**行距設為 1.5 倍**（單行間距時拼音會碰到上一行）。要傳給沒有安裝字型的人時，到「檔案 → 選項 → 儲存 → 在檔案中內嵌字型」
+- **Word／PowerPoint**：選字型「Taiwan Pinyin Kai」（中文名「臺灣拼音楷」）。PowerPoint 的**行距請設 1.5 倍**，因為單行間距時拼音會碰到上一行；Word 的單行間距就足夠。要傳給沒有安裝字型的人，請對方安裝字型，或改寄 PDF：實測 Word for Mac 的「內嵌字型」只存子集，移除字型後會用替代字型顯示
 - **Google 文件／簡報**：只能使用 Google Fonts 的字型，本字型送審中，詳見 [docs/google-fonts-submission.md](docs/google-fonts-submission.md)
 
 各軟體實測結果見 [docs/compat-matrix.md](docs/compat-matrix.md)。
