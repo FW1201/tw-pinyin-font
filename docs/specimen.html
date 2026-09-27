@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<title>臺灣拼音楷 字樣</title>
+<style>
+  @font-face { font-family: "TW Pinyin Kai"; src: url("../fonts/TWPinyinKai-Regular.woff2") format("woff2"); }
+  :root { --bg: #fff; --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; }
+  body { margin: 0; padding: 24px 16px; background: var(--bg); color: var(--fg); font-family: system-ui, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  p.note { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+  .sample { font-family: "TW Pinyin Kai"; border-top: 1px solid var(--line); padding: 12px 0; }
+  .label { font-size: 12px; color: var(--muted); font-family: system-ui, sans-serif; }
+  .s48 { font-size: 48px; } .s32 { font-size: 32px; } .s20 { font-size: 20px; line-height: 1.6; }
+  .off { font-feature-settings: "rclt" 0, "calt" 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); font-size: 56px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>臺灣拼音楷 TW Pinyin Kai — 字樣</h1>
+  <p class="note">讀音依《國語一字多音審訂表》＋全字庫＋自建詞表；基底字型：霞鶩文楷 TC。</p>
+
+  <div class="sample s48"><div class="label">詞語規則（rclt）</div>銀行　行人　長大　目的　的確　我的　了解　好了　顯著　睡著　看著</div>
+  <div class="sample s48 off"><div class="label">關閉 rclt／calt（只剩預設讀音）</div>銀行　行人　長大　目的　的確　我的</div>
+  <div class="sample s48"><div class="label">IVS 指定讀音：行 + E01E0…E01E3，銀行 + E01E0</div>行&#xE01E0;　行&#xE01E1;　行&#xE01E2;　行&#xE01E3;　銀行&#xE01E0;</div>
+  <div class="sample"><div class="label">長音節與 ü</div><div class="grid"><span>床</span><span>雙</span><span>莊</span><span>窗</span><span>綠</span><span>女</span><span>略</span><span>捐</span><span>嗯</span></div></div>
+  <div class="sample s32"><div class="label">段落 32px</div>春天來了，小朋友們到公園裡玩耍。花開得很漂亮，鳥在樹上唱歌。我們去銀行存錢，弟弟長大以後想當醫生。</div>
+  <div class="sample s20"><div class="label">段落 20px</div>臺灣是一個美麗的島嶼，四面環海，山脈縱貫南北。我們一起到銀行存錢，再去圖書館看書。</div>
+</main>
+</body>
+</html>

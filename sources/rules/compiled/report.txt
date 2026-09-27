@@ -1,0 +1,8 @@
+chars=76872 polyphonic=12678
+custom words=1477 rclt rules=1469
+warnings=5
+shendingbiao_1999.csv: 略過非單一字元「冫食」
+CNS_phonetic: 啐 initial without final: '˙ㄑ'
+CNS_phonetic: 𠵒 initial without final: '˙ㄑ'
+CNS_phonetic: 𨭗 unknown final in 'ㄍㄨㄜˊ'
+words.tsv:1370: 似的 的「似」讀音 shì 不在來源清單，已追加

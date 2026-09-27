@@ -1,0 +1,4 @@
+fonttools>=4.66
+uharfbuzz>=0.56
+brotli
+pytest

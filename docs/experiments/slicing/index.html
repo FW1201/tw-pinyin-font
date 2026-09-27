@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="zh-Hant-TW"><head><meta charset="utf-8"><title>分片實驗</title>
+<style>
+@font-face { font-family: Same; src: url(same.woff2); }
+@font-face { font-family: Sliced; src: url(a.woff2); unicode-range: U+9280; }
+@font-face { font-family: Sliced; src: url(b.woff2); unicode-range: U+884C, U+E01E0-E01EF; }
+@font-face { font-family: Split; src: url(c.woff2); unicode-range: U+9577; }
+@font-face { font-family: Split; src: url(d.woff2); unicode-range: U+5927, U+E01E0-E01EF; }
+body { font: 16px system-ui; padding: 16px; background:#fff; color:#111 }
+td { padding: 6px 14px; border-bottom: 1px solid #ddd } .t { font-size: 44px }
+</style></head><body>
+<h1 style="font-size:18px">Google Fonts 分片模擬（unicode-range）</h1>
+<table>
+<tr><td>對照：同一片</td><td class="t" style="font-family:Same">銀行</td><td>預期 yín háng</td></tr>
+<tr><td>銀、行在不同片</td><td class="t" style="font-family:Sliced">銀行</td><td>詞規則跨片？</td></tr>
+<tr><td>IVS 與基字同片</td><td class="t" style="font-family:Sliced">行&#xE01E2;</td><td>預期 háng</td></tr>
+<tr><td>IVS 不在基字那片</td><td class="t" style="font-family:Split">長&#xE01E1;</td><td>預期 zhǎng</td></tr>
+</table></body></html>
