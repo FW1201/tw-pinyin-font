@@ -28,7 +28,7 @@
 ## 安裝與使用
 
 - **Windows**：在 `fonts/TaiwanPinyinKai-Regular.ttf` 上按右鍵 →「為所有使用者安裝」
-- **macOS**：雙擊 `.ttf` →「安裝字體」。Mac 版 Office 的字型選單只顯示英文名 **Taiwan Pinyin Kai**
+- **macOS**：雙擊 `.ttf` →「安裝字體」。Mac 版 Office 的字型選單只顯示英文名 **Taiwan Pinyin Kai**；Office 有自己的字型快取，安裝後若沒出現，請把 Office 完全結束再開（實測有時要重開兩次）
 - **Word／PowerPoint**：選字型「Taiwan Pinyin Kai」（中文名「臺灣拼音楷」），**行距設為 1.5 倍**（單行間距時拼音會碰到上一行）。要傳給沒有安裝字型的人時，到「檔案 → 選項 → 儲存 → 在檔案中內嵌字型」
 - **Google 文件／簡報**：只能使用 Google Fonts 的字型，本字型送審中，詳見 [docs/google-fonts-submission.md](docs/google-fonts-submission.md)
 
