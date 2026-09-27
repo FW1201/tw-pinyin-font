@@ -47,7 +47,7 @@ By opening this issue, I confirm the project meets the following requirements:
 - [x] The font supports at least the Google Fonts 'Latin Core' glyphset (inherited from LXGW WenKai TC)
 - [x] The repo has the [Google Fonts preferred upstream repo structure](https://googlefonts.github.io/gf-guide/upstream.html)
 - [x] I have read, agree with, and comply with, the full [Google Fonts contributing requirements](https://googlefonts.github.io/gf-guide/index#pre-production-getting-your-fonts-ready-for-gf)
-- [ ] I will maintain the repository and participate in the onboarding process
+- [x] I will maintain the repository and participate in the onboarding process
 
 **Notes for the onboarding team**
 
@@ -74,6 +74,13 @@ By opening this issue, I confirm the project meets the following requirements:
    Could the slicer keep cmap14 entries with their base characters? Can it take co-occurrence (word rules) into account when building slices?
 6. **fontbakery** `check-googlefonts`: **0 FAIL / 98 PASS / 18 WARN**, mostly outline WARNs inherited from WenKai TC.
 7. **Compatibility.** Tested on HarfBuzz/Chrome and macOS CoreText: defaults, word rules and IVS all work. On Word/PowerPoint/Excel for Mac, defaults and IVS work, but Office does not run the contextual rules. The details are in `docs/compat-matrix.md`.
+
+8. **Companion reading corrector.** Because Office ignores the contextual rules and CJK slicing breaks them, we provide a free web tool: the [Pinyin reading corrector](https://tw-pinyin-editor.vercel.app).
+   - It runs exactly the same longest-match word rules as the font, in JavaScript that is tested against the font's GSUB output.
+   - It highlights polyphonic characters so users can click to change a reading.
+   - "Copy (pin readings)" inserts IVS (`U+E01E0 + n`) only where a reading differs from the default.
+
+   Pinned text then shows correct readings anywhere cmap14 is supported, which we verified in Word, PowerPoint and Excel for Mac. The same engine is packaged as an Office add-in and a Google Docs/Slides add-on, so Google Docs users could pin readings even if slicing drops the word rules.
 
 **Image:**
 
