@@ -16,7 +16,7 @@ test:
 	$(PY) -m pytest -q tests
 
 fontbakery: googlefonts
-	.venv/bin/fontbakery check-googlefonts -l WARN -n --skip-network --ghmarkdown build/out/fontbakery.md fonts/googlefonts/TWPinyinKai-Regular.ttf
+	.venv/bin/fontbakery check-googlefonts --configuration fontbakery.yml -l WARN -n --skip-network --json build/out/fontbakery.json --ghmarkdown build/out/fontbakery.md fonts/googlefonts/TaiwanPinyinKai-Regular.ttf
 
 clean:
 	rm -rf build/out fonts/googlefonts

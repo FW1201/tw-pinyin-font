@@ -75,13 +75,18 @@ def test_font_tables():
     assert "glyf" in font and "CFF " not in font, "Office 只能內嵌 TrueType 輪廓"
     assert font["OS/2"].fsType == 0
     assert len(font.getGlyphOrder()) <= 65535
-    assert font["OS/2"].fsSelection & (1 << 7), "USE_TYPO_METRICS"
+    os2, hhea = font["OS/2"], font["hhea"]
+    assert (os2.sTypoAscender, os2.sTypoDescender) == (880, -120), "Google Fonts CJK 規範"
+    assert not os2.fsSelection & (1 << 7), "USE_TYPO_METRICS 必須關閉"
+    assert hhea.ascent == os2.usWinAscent and -hhea.descent == os2.usWinDescent
+    top = max(getattr(font["glyf"][g], "yMax", 0) for g in font.getGlyphOrder())
+    assert hhea.ascent >= top, "行高必須涵蓋拼音最高點"
     glyf = font["glyf"]
     nested = [g for g in font.getGlyphOrder() if glyf[g].isComposite()
               and any(glyf[c.glyphName].isComposite() for c in glyf[g].components)]
     assert not nested, f"巢狀元件：{nested[:5]}"
     names = {n.nameID: n.toUnicode() for n in font["name"].names if n.langID == 0x409}
-    assert names[1] == "TW Pinyin Kai" and "Open Font License" in names[13]
+    assert names[1] == "Taiwan Pinyin Kai" and "Open Font License" in names[13]
     zh = {n.toUnicode() for n in font["name"].names if n.nameID == 1 and n.langID == 0x404}
     assert zh == {"臺灣拼音楷"}
 

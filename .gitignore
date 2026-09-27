@@ -4,3 +4,4 @@ __pycache__/
 build/out/
 fonts/googlefonts/
 .DS_Store
+tests/office/out/

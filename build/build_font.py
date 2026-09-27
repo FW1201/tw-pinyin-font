@@ -37,11 +37,11 @@ BASE_FONT = ROOT / "sources/base/LXGWWenKaiTC-Regular.ttf"
 COMPILED = ROOT / "sources/rules/compiled"
 OUT_DIR = ROOT / "fonts"
 
-FAMILY_EN = "TW Pinyin Kai"
+FAMILY_EN = "Taiwan Pinyin Kai"
 FAMILY_ZH_HANT = "臺灣拼音楷"
 FAMILY_ZH_HANS = "台湾拼音楷"
-PS_NAME = "TWPinyinKai-Regular"
-VERSION = "0.100"
+PS_NAME = "TaiwanPinyinKai-Regular"
+VERSION = "1.000"
 REPO_URL = "https://github.com/FW1201/tw-pinyin-font"
 
 # 拼音排版參數（單位：font units，UPM 1000）
@@ -49,8 +49,10 @@ PY_SCALE = 0.34        # 拉丁字母縮放比例（x 高約為漢字的 1/6，�
 PY_BASELINE = 990      # 拼音基線高度（漢字頂端約 880，g／y 下伸部不碰漢字）
 PY_MAX_WIDTH = 960     # 音節最大寬度；超過就水平壓縮
 PY_TRACKING = 8        # 字母間距（縮放後）
-ASCENDER = 1310        # 新的 hhea／typo ascender（涵蓋 ǚ 等最高的聲調符號）
-DESCENDER = -280
+# 垂直度量依 Google Fonts CJK 規範：typo 維持標準字身 880／-120 且關閉 USE_TYPO_METRICS；
+# 實際行高由 hhea＝win 決定，自動涵蓋拼音最高點與最低的字形，瀏覽器與 Office 都不會裁切拼音。
+TYPO_ASCENDER = 880
+TYPO_DESCENDER = -120
 
 IVS_BASE = 0xE01E0
 RULES_PER_SUBTABLE = 64
@@ -212,6 +214,7 @@ def build(limit: int | None, woff2: bool, google_fonts: bool = False) -> Path:
     add_word_rules(font, rules, chars, default_glyph, variant_glyphs, ivs_glyphs)
 
     # ---------- 度量與名稱 ----------
+    fix_zero_width(font)
     set_metrics(font)
     set_names(font, google_fonts)
     font["head"].fontRevision = float(VERSION)
@@ -358,23 +361,47 @@ def add_feature(gsub, tag: str, lookup_indices: list[int]) -> None:
 
 
 def set_metrics(font: TTFont) -> None:
-    ymax = max(getattr(font["glyf"][g], "yMax", 0) for g in font.getGlyphOrder())
-    ymin = min(getattr(font["glyf"][g], "yMin", 0) for g in font.getGlyphOrder())
+    glyf = font["glyf"]
+    ymax = max(getattr(glyf[g], "yMax", 0) for g in font.getGlyphOrder())
+    ymin = min(getattr(glyf[g], "yMin", 0) for g in font.getGlyphOrder())
     hhea, os2 = font["hhea"], font["OS/2"]
-    hhea.ascent, hhea.descent, hhea.lineGap = ASCENDER, DESCENDER, 0
-    os2.sTypoAscender, os2.sTypoDescender, os2.sTypoLineGap = ASCENDER, DESCENDER, 0
-    os2.usWinAscent = max(ymax, ASCENDER)
-    os2.usWinDescent = max(-ymin, -DESCENDER)
-    os2.fsSelection |= 1 << 7  # USE_TYPO_METRICS
+    os2.sTypoAscender, os2.sTypoDescender, os2.sTypoLineGap = TYPO_ASCENDER, TYPO_DESCENDER, 0
+    os2.fsSelection &= ~(1 << 7)  # 關閉 USE_TYPO_METRICS
+    hhea.ascent = os2.usWinAscent = ymax
+    os2.usWinDescent = -ymin
+    hhea.descent = ymin
+    hhea.lineGap = 0
     os2.fsType = 0             # Installable：Office 可內嵌
     os2.achVendID = "TWPY"
+
+
+def fix_zero_width(font: TTFont) -> None:
+    """零寬字形：組合符號寫進 GDEF 的 mark 類別；非組合符號（U+02BE）補上前進寬度。"""
+    hmtx, glyf = font["hmtx"], font["glyf"]
+    marks = set()
+    for cp, name in font.getBestCmap().items():
+        if hmtx[name][0] != 0 or unicodedata.category(chr(cp)) in ("Zs", "Cf"):
+            continue
+        if unicodedata.category(chr(cp)).startswith("M"):
+            marks.add(name)
+        else:
+            g = glyf[name]
+            hmtx[name] = (max(getattr(g, "xMax", 0), 0) + 60, hmtx[name][1])
+    gdef = otTables.GDEF()
+    gdef.Version = 0x00010000
+    gdef.GlyphClassDef = otTables.GlyphClassDef()
+    gdef.GlyphClassDef.classDefs = {name: 3 for name in marks}
+    gdef.AttachList = gdef.LigCaretList = gdef.MarkAttachClassDef = None
+    table = newTable("GDEF")
+    table.table = gdef
+    font["GDEF"] = table
 
 
 def set_names(font: TTFont, google_fonts: bool = False) -> None:
     name = font["name"]
     copyright_ = (
         "Copyright 2022-2026 The LXGW WenKai Project Authors (https://github.com/lxgw/LxgwWenkaiTC); "
-        f"Copyright 2026 The TW Pinyin Kai Project Authors ({REPO_URL})"
+        f"Copyright 2026 The Taiwan Pinyin Kai Project Authors ({REPO_URL})"
     )
     description = (
         "Hanyu Pinyin annotated Traditional Chinese font. Readings based on the Ministry of Education "

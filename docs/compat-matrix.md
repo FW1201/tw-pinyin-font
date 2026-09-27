@@ -9,13 +9,20 @@
 | Chrome（macOS） | ✅ | ✅ | ✅ | ➖ | [字樣頁](specimen.html) 目視檢查 |
 | Chrome＋unicode-range 分片（模擬 Google Fonts） | ✅ | ❌ 跨片失效 | ⚠️ 須與基字同片 | ➖ | [分片實驗](experiments/slicing/index.html) |
 | Word（Windows） | ⏳ | ⏳ | ⏳ | ⏳ | 見下方檢核表 |
-| Word（macOS） | ⏳ | ⏳ | ⏳ | ⏳ | |
+| Word（macOS） | ⏳ | ⏳ | ⏳ | ⏳ | 待重新啟動 Word 後實測 |
 | Word 網頁版 | ⏳ | ⏳ | ⏳ | ➖ | |
-| PowerPoint（Windows／macOS） | ⏳ | ⏳ | ⏳ | ⏳ | |
-| Excel（Windows／macOS） | ⏳ | ⏳ | ⏳ | ➖ | |
-| Pages／Keynote | ⏳ | ⏳ | ⏳ | ➖ | |
+| PowerPoint（macOS 16.113） | ✅ | ❌ | ✅ | ⏳ | 2026-09-27 實測；單行間距拼音會壓到上一行，需 1.5 倍行高 |
+| PowerPoint（Windows） | ⏳ | ⏳ | ⏳ | ⏳ | |
+| Excel（macOS 16.113） | ✅ | ❌ | ✅ | ➖ | 2026-09-27 實測；列高需調高 |
+| Excel（Windows） | ⏳ | ⏳ | ⏳ | ➖ | |
+| macOS CoreText（Pages、Keynote、TextEdit、Safari） | ✅ | ✅ | ✅ | ➖ | 2026-09-27 以 AppKit 繪製實測 |
 | LibreOffice Writer | ⏳ | ⏳ | ⏳ | ⏳ | 使用 HarfBuzz，預期可用 |
 | Google 文件／簡報 | ❌ 無法載入自訂字型 | — | — | ➖ | 需先上架 Google Fonts |
+
+## Mac 版 Office 實測結論（2026-09-27）
+
+- Mac 版 PowerPoint／Excel 對中文文字**完全不執行 GSUB 情境替換**。實驗版把詞語規則同時掛在 ccmp、liga、clig、rlig 上也無效；但預設讀音（cmap）與 **IVS（cmap 14）完全正確**。
+- 所以 Office 的建議流程是：用校正器或增益集「固定讀音」寫入 IVS，再把行距設為 1.5 倍。已用「固定讀音」後的簡報驗證：長大、銀行、目的、睡著、弟弟、音樂、快樂、得到、覺得、高興地全部正確。
 
 ## 分片實驗結論
 
@@ -28,7 +35,7 @@ Google Fonts 會把 CJK 字型切成 100 多個 `unicode-range` 分片。在 Chr
 
 ## Office 實測檢核表
 
-請在每個環境安裝 `fonts/TWPinyinKai-Regular.ttf`，把 [`tests/fixtures/office-test.txt`](../tests/fixtures/office-test.txt) 整份複製貼上（含 IVS），字型設為 **TW Pinyin Kai**：
+請在每個環境安裝 `fonts/TaiwanPinyinKai-Regular.ttf`，把 [`tests/fixtures/office-test.txt`](../tests/fixtures/office-test.txt) 整份複製貼上（含 IVS），字型設為 **Taiwan Pinyin Kai**：
 
 | # | 測試文字 | 預期 | 說明 |
 |---|------|------|------|
@@ -37,6 +44,6 @@ Google Fonts 會把 CJK 字型切成 100 多個 `unicode-range` 分片。在 Chr
 | 3 | 從校正器複製「銀行（行指定 xíng）」貼上 | yín xíng | IVS 指定讀音 |
 | 4 | 行高 | 拼音不被裁切、行與行不重疊 | 單行間距 |
 | 5 | 另存時勾選「在檔案中內嵌字型」，在未安裝字型的電腦開啟 | 顯示與原機相同 | 內嵌（TrueType、fsType 0） |
-| 6 | 字型選單名稱 | Windows：臺灣拼音楷／TW Pinyin Kai；Mac：TW Pinyin Kai | 名稱表 |
+| 6 | 字型選單名稱 | Windows：臺灣拼音楷／Taiwan Pinyin Kai；Mac：Taiwan Pinyin Kai | 名稱表 |
 
 實測後請更新上表，並附上 Office 版本號。

@@ -1,4 +1,4 @@
-# 拼音 IVS 規格（TW Pinyin Kai v0.1）
+# 拼音 IVS 規格（Taiwan Pinyin Kai v0.1）
 
 ## 編碼
 

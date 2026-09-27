@@ -13,7 +13,7 @@ import uharfbuzz as hb
 from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_FONT = ROOT / "fonts" / "TWPinyinKai-Regular.ttf"
+DEFAULT_FONT = ROOT / "fonts" / "TaiwanPinyinKai-Regular.ttf"
 COMPILED = ROOT / "sources/rules/compiled/chars.tsv"
 
 

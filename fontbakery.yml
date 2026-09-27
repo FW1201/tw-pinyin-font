@@ -1,0 +1,7 @@
+# fontbakery 設定（make fontbakery 使用）
+# CJK 字型的檔案大小例外：Google Fonts 現有的 CJK 字型都超過預設的 9 MB
+#   （例：ofl/lxgwwenkaitc 12 MB、ofl/notosanstc 11 MB、ofl/chironheihk 29–31 MB）。
+# 本字型約 17 MB（2 萬個漢字＋拼音 composite），上限設為 32 MB。
+file_size:
+  WARN_SIZE: 20971520
+  FAIL_SIZE: 33554432

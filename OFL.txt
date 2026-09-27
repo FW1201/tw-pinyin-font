@@ -1,4 +1,4 @@
-Copyright 2026 The TW Pinyin Kai Project Authors (https://github.com/FW1201/tw-pinyin-font)
+Copyright 2026 The Taiwan Pinyin Kai Project Authors (https://github.com/FW1201/tw-pinyin-font)
 Copyright 2022-2026 The LXGW WenKai Project Authors (https://github.com/lxgw/LxgwWenkaiTC)
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
